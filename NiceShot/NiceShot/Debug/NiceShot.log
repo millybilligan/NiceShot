@@ -1,0 +1,14 @@
+﻿  client.cpp
+C:\Users\millybilligan\source\repos\NiceShot\NiceShot\client.cpp(10,6): warning C4551: в вызове функции отсутствует список аргументов
+C:\Users\millybilligan\source\repos\NiceShot\NiceShot\client.cpp(13,6): warning C4551: в вызове функции отсутствует список аргументов
+C:\Users\millybilligan\source\repos\NiceShot\NiceShot\client.cpp(16,6): warning C4551: в вызове функции отсутствует список аргументов
+C:\Users\millybilligan\source\repos\NiceShot\NiceShot\client.cpp(19,6): warning C4551: в вызове функции отсутствует список аргументов
+C:\Users\millybilligan\source\repos\NiceShot\NiceShot\client.cpp(22,6): warning C4551: в вызове функции отсутствует список аргументов
+  main.cpp
+  server.cpp
+C:\Users\millybilligan\source\repos\NiceShot\NiceShot\server.cpp(25,6): warning C4101: bytesReadFromSock: неиспользованная локальная переменная
+C:\Users\millybilligan\source\repos\NiceShot\NiceShot\server.cpp(24,8): warning C4101: bytesReadFromPipe: неиспользованная локальная переменная
+  Создание кода...
+C:\Users\millybilligan\source\repos\NiceShot\NiceShot\client.cpp(36): warning C4172: возвращение адреса локальной или временной переменной : username
+C:\Users\millybilligan\source\repos\NiceShot\NiceShot\client.cpp(59): warning C4715: Client::diskGet: значение возвращается не при всех путях выполнения
+  NiceShot.vcxproj -> C:\Users\millybilligan\source\repos\NiceShot\Debug\NiceShot.exe
