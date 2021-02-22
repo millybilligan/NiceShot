@@ -1,5 +1,5 @@
 # NiceShot
-A nice reverse shell for Windows.
+A nice reverse shell with WinApi for Windows.
 
 ## Functionality:
 * Get the client username
